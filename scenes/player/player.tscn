@@ -2,14 +2,25 @@
 
 [ext_resource type="Texture2D" uid="uid://drtvtpx7gilmv" path="res://graphics/player/player.png" id="1_7pwjn"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_mlmg8"]
-[ext_resource type="Texture2D" uid="uid://cr13rjbhn3mkk" path="res://graphics/projectiles/blue.png" id="2_gvn7u"]
 
-[node name="Player" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1brs"]
+radius = 59.0085
+
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_mlmg8")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -39)
 texture = ExtResource("1_7pwjn")
 
-[node name="LaserSprite" type="Sprite2D" parent="PlayerSprite"]
-position = Vector2(18, -181)
-texture = ExtResource("2_gvn7u")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o1brs")
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="GrenadeTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="timeout" from="GrenadeTimer" to="." method="_on_grenade_timer_timeout"]
