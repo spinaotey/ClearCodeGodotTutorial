@@ -13,6 +13,10 @@ script = ExtResource("1_ppooy")
 [node name="Player" parent="." instance=ExtResource("4_hykkb")]
 position = Vector2(485, 541)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Grenade" parent="." instance=ExtResource("2_8hj6b")]
