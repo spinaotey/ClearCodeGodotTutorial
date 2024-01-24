@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-# signal called laser that returns a vector2
 signal laser(pos: Vector2)
+signal grenade(pos: Vector2)
 
 var speed: float = 500
 var can_laser: bool = true
@@ -26,7 +26,7 @@ func _process(_delta):
 
     # shoot grenade
     if Input.is_action_pressed("secondary action") and can_grenade:
-        print("Shoot grenade!")
+        grenade.emit(_laser_start_positions.pick_random().global_position)
         can_grenade = false
         $GrenadeTimer.start()
 
