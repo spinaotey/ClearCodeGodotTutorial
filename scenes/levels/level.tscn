@@ -1,12 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://lbwyhax2j4hj"]
+[gd_scene load_steps=9 format=3 uid="uid://lbwyhax2j4hj"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ppooy"]
 [ext_resource type="PackedScene" uid="uid://bfuckiknkqetv" path="res://scenes/projectiles/grenade.tscn" id="2_8hj6b"]
 [ext_resource type="PackedScene" uid="uid://mla6dlgntx5x" path="res://scenes/objects/gate.tscn" id="2_h1rfq"]
+[ext_resource type="Texture2D" uid="uid://dhresff6mend5" path="res://graphics/ground/stones.png" id="2_v103l"]
+[ext_resource type="Texture2D" uid="uid://bnimg6vhx24d7" path="res://graphics/decals/dirt_patch.png" id="3_c6jne"]
+[ext_resource type="TileSet" uid="uid://bj8658refrewo" path="res://scenes/tilemaps/tilemap.tres" id="4_81g1t"]
 [ext_resource type="PackedScene" uid="uid://b4hvnjylgoodq" path="res://scenes/player/player.tscn" id="4_hykkb"]
+[ext_resource type="PackedScene" uid="uid://douj7t6e1q7g0" path="res://scenes/objects/house.tscn" id="5_skfow"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ppooy")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Soil" type="Sprite2D" parent="Ground"]
+texture_repeat = 2
+position = Vector2(423, 587)
+texture = ExtResource("2_v103l")
+region_enabled = true
+region_rect = Rect2(0, 0, 10000, 10000)
+
+[node name="DirtPatch" type="Sprite2D" parent="Ground"]
+position = Vector2(-197, 1051)
+texture = ExtResource("3_c6jne")
+
+[node name="DirtPatch2" type="Sprite2D" parent="Ground"]
+modulate = Color(0.901961, 0.780392, 0.611765, 1)
+position = Vector2(1271, 1105)
+texture = ExtResource("3_c6jne")
+
+[node name="TileMap" type="TileMap" parent="Ground/DirtPatch2"]
+tile_set = ExtResource("4_81g1t")
+format = 2
+layer_0/name = "Soil"
+layer_0/tile_data = PackedInt32Array(131063, 131073, 1, 196599, 131073, 2, 196598, 65537, 2, 131062, 65537, 1, 196597, 1, 2, 131061, 1, 1, -11, 1, 0, 65525, 1, 1, -10, 65537, 0, 65526, 65537, 1, -9, 131073, 0, 65527, 131073, 1, -131068, 0, 1, -65532, 0, 2, 4, 131072, 2, 3, 65536, 1, 65539, 0, 2, 131075, 0, 2, 196611, 65536, 2, 196612, 65536, 0, 196613, 65536, 0, 196614, 65536, 0, 196615, 131072, 2, 131079, 0, 2, 65543, 65536, 1, 65544, 131072, 0)
+layer_1/name = "Walls"
+layer_1/tile_data = PackedInt32Array(-196615, 131072, 0, -196616, 65536, 0, -196617, 65536, 0, -196618, 65536, 1, -131082, 0, 2, -65546, 0, 2, -10, 0, 2, 65526, 0, 2, 131062, 0, 2, 196598, 65536, 2, 196599, 65536, 0, 196600, 131072, 0)
+
+[node name="House" parent="Ground" instance=ExtResource("5_skfow")]
+position = Vector2(-1027, 3997)
+rotation = -2.5643
 
 [node name="Gate" parent="." instance=ExtResource("2_h1rfq")]
 
