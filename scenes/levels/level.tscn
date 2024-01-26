@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://lbwyhax2j4hj"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ppooy"]
-[ext_resource type="PackedScene" uid="uid://bfuckiknkqetv" path="res://scenes/projectiles/grenade.tscn" id="2_8hj6b"]
 [ext_resource type="PackedScene" uid="uid://mla6dlgntx5x" path="res://scenes/objects/gate.tscn" id="2_h1rfq"]
 [ext_resource type="Texture2D" uid="uid://dhresff6mend5" path="res://graphics/ground/stones.png" id="2_v103l"]
 [ext_resource type="Texture2D" uid="uid://bnimg6vhx24d7" path="res://graphics/decals/dirt_patch.png" id="3_c6jne"]
 [ext_resource type="TileSet" uid="uid://bj8658refrewo" path="res://scenes/tilemaps/tilemap.tres" id="4_81g1t"]
 [ext_resource type="PackedScene" uid="uid://b4hvnjylgoodq" path="res://scenes/player/player.tscn" id="4_hykkb"]
 [ext_resource type="PackedScene" uid="uid://douj7t6e1q7g0" path="res://scenes/objects/house.tscn" id="5_skfow"]
+[ext_resource type="PackedScene" uid="uid://bv6rsivkgfs4g" path="res://scenes/objects/steam_vent.tscn" id="6_g2mb1"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ppooy")
@@ -42,6 +42,9 @@ layer_1/tile_data = PackedInt32Array(-196615, 131072, 0, -196616, 65536, 0, -196
 position = Vector2(-1027, 3997)
 rotation = -2.5643
 
+[node name="SteamVent" parent="Ground" instance=ExtResource("6_g2mb1")]
+position = Vector2(128, 605)
+
 [node name="Gate" parent="." instance=ExtResource("2_h1rfq")]
 
 [node name="Player" parent="." instance=ExtResource("4_hykkb")]
@@ -52,9 +55,6 @@ zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="."]
-
-[node name="Grenade" parent="." instance=ExtResource("2_8hj6b")]
-position = Vector2(328, 508)
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
