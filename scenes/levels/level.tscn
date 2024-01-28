@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lbwyhax2j4hj"]
+[gd_scene load_steps=10 format=3 uid="uid://lbwyhax2j4hj"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ppooy"]
 [ext_resource type="PackedScene" uid="uid://mla6dlgntx5x" path="res://scenes/objects/gate.tscn" id="2_h1rfq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b4hvnjylgoodq" path="res://scenes/player/player.tscn" id="4_hykkb"]
 [ext_resource type="PackedScene" uid="uid://douj7t6e1q7g0" path="res://scenes/objects/house.tscn" id="5_skfow"]
 [ext_resource type="PackedScene" uid="uid://bv6rsivkgfs4g" path="res://scenes/objects/steam_vent.tscn" id="6_g2mb1"]
+[ext_resource type="PackedScene" uid="uid://kx63m14jxads" path="res://scenes/objects/light_fan_animation.tscn" id="7_mnpbd"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ppooy")
@@ -45,7 +46,11 @@ rotation = -2.5643
 [node name="SteamVent" parent="Ground" instance=ExtResource("6_g2mb1")]
 position = Vector2(128, 605)
 
+[node name="LightFanAnimation" parent="Ground" instance=ExtResource("7_mnpbd")]
+position = Vector2(-704, 2372)
+
 [node name="Gate" parent="." instance=ExtResource("2_h1rfq")]
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("4_hykkb")]
 position = Vector2(485, 541)
@@ -55,6 +60,7 @@ zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
