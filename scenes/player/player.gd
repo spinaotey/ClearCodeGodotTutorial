@@ -3,7 +3,8 @@ extends CharacterBody2D
 signal laser(pos: Vector2, direction: Vector2)
 signal grenade(pos: Vector2, direction: Vector2)
 
-var speed: float = 700
+@export var max_speed: int = 700
+var speed: int = max_speed
 var can_laser: bool = true
 var can_grenade: bool = true
 var _laser_start_positions: Array[Node]
