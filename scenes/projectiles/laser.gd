@@ -3,6 +3,9 @@ extends Area2D
 @export var speed: float = 500
 var direction: Vector2 = Vector2.UP
 
+func _ready():
+    $SelfDestructTimer.start()
+
 func _process(delta):
     position += direction * speed * delta
 
