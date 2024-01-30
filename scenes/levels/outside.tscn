@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctrghhkmbtna3"]
+[gd_scene load_steps=12 format=3 uid="uid://ctrghhkmbtna3"]
 
 [ext_resource type="PackedScene" uid="uid://lbwyhax2j4hj" path="res://scenes/levels/level.tscn" id="1_jw467"]
 [ext_resource type="Texture2D" uid="uid://dhresff6mend5" path="res://graphics/ground/stones.png" id="2_81eva"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bv6rsivkgfs4g" path="res://scenes/objects/steam_vent.tscn" id="6_gnggf"]
 [ext_resource type="PackedScene" uid="uid://kx63m14jxads" path="res://scenes/objects/light_fan_animation.tscn" id="7_s6yaw"]
 [ext_resource type="PackedScene" uid="uid://mla6dlgntx5x" path="res://scenes/objects/gate.tscn" id="8_0bp31"]
+[ext_resource type="PackedScene" uid="uid://d0rjtxr3c1xak" path="res://scenes/objects/toilet.tscn" id="10_hq4xt"]
+[ext_resource type="PackedScene" uid="uid://bn4byk8mxtnam" path="res://scenes/objects/box_item.tscn" id="11_ilq8b"]
 
 [node name="Outside" instance=ExtResource("1_jw467")]
 script = ExtResource("2_v8y6k")
@@ -49,6 +51,16 @@ position = Vector2(-704, 2372)
 
 [node name="Gate" parent="." index="1" instance=ExtResource("8_0bp31")]
 metadata/_edit_lock_ = true
+
+[node name="Toilet" parent="." index="4" instance=ExtResource("10_hq4xt")]
+position = Vector2(578, 1031)
+collision_layer = 1
+collision_mask = 1
+
+[node name="BoxItem" parent="Toilet" index="2" instance=ExtResource("11_ilq8b")]
+position = Vector2(627, -219)
+collision_layer = 1
+collision_mask = 1
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]
