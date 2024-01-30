@@ -9,3 +9,12 @@ func _process(delta):
 func set_direction(dir: Vector2):
     self.direction = dir
     rotation = dir.angle()
+
+func _on_body_entered(body:Node2D):
+    if "hit" in body:
+        body.hit()
+    queue_free()
+
+func _on_timer_timeout():
+    print("timeout")
+    queue_free()

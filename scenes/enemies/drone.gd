@@ -5,3 +5,6 @@ var speed: float = 200
 func _process(_delta):
     velocity.x = speed
     move_and_slide()
+
+func hit():
+    print("hit")

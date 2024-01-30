@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lbwyhax2j4hj"]
+[gd_scene load_steps=11 format=3 uid="uid://lbwyhax2j4hj"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ppooy"]
 [ext_resource type="PackedScene" uid="uid://mla6dlgntx5x" path="res://scenes/objects/gate.tscn" id="2_h1rfq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://douj7t6e1q7g0" path="res://scenes/objects/house.tscn" id="5_skfow"]
 [ext_resource type="PackedScene" uid="uid://bv6rsivkgfs4g" path="res://scenes/objects/steam_vent.tscn" id="6_g2mb1"]
 [ext_resource type="PackedScene" uid="uid://kx63m14jxads" path="res://scenes/objects/light_fan_animation.tscn" id="7_mnpbd"]
+[ext_resource type="PackedScene" uid="uid://dtl3nmrcmuquq" path="res://scenes/enemies/drone.tscn" id="10_aq5ur"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ppooy")
@@ -61,6 +62,9 @@ position_smoothing_enabled = true
 
 [node name="Projectiles" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
+
+[node name="Drone" parent="." instance=ExtResource("10_aq5ur")]
+position = Vector2(87, 854)
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]
