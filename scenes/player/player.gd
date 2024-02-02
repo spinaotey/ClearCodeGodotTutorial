@@ -23,7 +23,8 @@ func _process(_delta):
 	look_at(get_global_mouse_position())
 
 	# laser shoot
-	if Input.is_action_pressed("primary action") and can_laser:
+	if Input.is_action_pressed("primary action") and can_laser and Globals.laser_amount > 0:
+		Globals.laser_amount -= 1
 		var laser_postion = _laser_start_positions.pick_random().global_position
 		var laser_direction = global_position.direction_to(get_global_mouse_position()).normalized()
 		var particles: GPUParticles2D = $ShootParticles
@@ -35,12 +36,14 @@ func _process(_delta):
 		$LaserTimer.start()
 
 	# shoot grenade
-	if Input.is_action_pressed("secondary action") and can_grenade:
+	if Input.is_action_pressed("secondary action") and can_grenade and Globals.grenade_amount > 0:
+		Globals.grenade_amount -= 1
 		var grenade_postion = _laser_start_positions.pick_random().global_position
 		var grenade_direction = global_position.direction_to(get_global_mouse_position()).normalized()
 		grenade.emit(grenade_postion, grenade_direction)
 		can_grenade = false
 		$GrenadeTimer.start()
+		
 
 func _on_laser_timer_timeout():
 	can_laser = true
