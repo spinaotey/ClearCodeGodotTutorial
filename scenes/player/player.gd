@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal laser(pos: Vector2, direction: Vector2)
 signal grenade(pos: Vector2, direction: Vector2)
+signal update_stats()
 
 @export var max_speed: int = 700
 var speed: int = max_speed
@@ -50,3 +51,11 @@ func _on_laser_timer_timeout():
 
 func _on_grenade_timer_timeout():
 	can_grenade = true
+
+func get_item(type: Enums.ITEM_TYPE) -> void:
+	match type:
+		Enums.ITEM_TYPE.LASER:
+			Globals.laser_amount += 5
+		Enums.ITEM_TYPE.GRENADE:
+			Globals.grenade_amount += 1
+	update_stats.emit()

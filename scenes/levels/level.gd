@@ -19,3 +19,8 @@ func _on_player_grenade(pos:Vector2, direction: Vector2):
 	grenade.position = pos
 	grenade.linear_velocity = direction * grenade.speed
 	$UI.update_grenade_text()
+
+
+func _on_player_update_stats():
+	$UI.update_laser_text()
+	$UI.update_grenade_text()

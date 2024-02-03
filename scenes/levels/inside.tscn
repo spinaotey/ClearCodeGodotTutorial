@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbspkaf8tj5sb"]
+[gd_scene load_steps=12 format=3 uid="uid://bbspkaf8tj5sb"]
 
 [ext_resource type="PackedScene" uid="uid://lbwyhax2j4hj" path="res://scenes/levels/level.tscn" id="1_vgu6q"]
 [ext_resource type="Texture2D" uid="uid://bawdrcwg1c43b" path="res://graphics/ground/dirt.png" id="2_0axrm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://2aw8f4ir3ohy" path="res://graphics/lights/textures/circle.png" id="6_a3hhh"]
 [ext_resource type="PackedScene" uid="uid://kx63m14jxads" path="res://scenes/objects/light_fan_animation.tscn" id="6_hvlm8"]
 [ext_resource type="Texture2D" uid="uid://ufoycert1vdu" path="res://graphics/lights/overlays/infrastructure.png" id="7_x7vto"]
+[ext_resource type="PackedScene" uid="uid://icfblvkx1sdf" path="res://scenes/items/item.tscn" id="10_kjtcw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpj3e"]
 size = Vector2(187, 384)
@@ -85,5 +86,8 @@ blend_mode = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitGate" index="0"]
 position = Vector2(1764.5, 191)
 shape = SubResource("RectangleShape2D_jpj3e")
+
+[node name="Item" parent="." index="7" instance=ExtResource("10_kjtcw")]
+position = Vector2(989, 969)
 
 [connection signal="body_entered" from="ExitGate" to="." method="_on_exit_gate_body_entered"]
