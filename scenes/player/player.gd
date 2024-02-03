@@ -58,4 +58,6 @@ func get_item(type: Enums.ITEM_TYPE) -> void:
 			Globals.laser_amount += 5
 		Enums.ITEM_TYPE.GRENADE:
 			Globals.grenade_amount += 1
+		Enums.ITEM_TYPE.HEALTH:
+			Globals.health += 10
 	update_stats.emit()

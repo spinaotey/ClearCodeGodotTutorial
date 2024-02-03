@@ -19,5 +19,4 @@ func _on_body_entered(body:Node2D):
     queue_free()
 
 func _on_timer_timeout():
-    print("timeout")
     queue_free()

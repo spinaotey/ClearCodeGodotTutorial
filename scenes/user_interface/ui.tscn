@@ -10,7 +10,7 @@
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_g36kb")
 
-[node name="HealthBar" type="MarginContainer" parent="."]
+[node name="HealthBarContainer" type="MarginContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -23,7 +23,8 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_bottom = 30
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="HealthBar"]
+[node name="HealthBar" type="TextureProgressBar" parent="HealthBarContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 value = 20.0
 texture_under = ExtResource("4_fv7ht")

@@ -4,8 +4,10 @@ extends CanvasLayer
 @export var empty_color: Color = Color.RED
 
 func _ready():
+    Globals.health_change.connect(update_health_ui)
     update_laser_text()
     update_grenade_text()
+    update_health_ui()
 
 func update_laser_text():
     %LaserLabel.text = str(Globals.laser_amount)
@@ -20,3 +22,6 @@ func update_grenade_text():
         %GrenadeContainer.modulate = empty_color
     else:
         %GrenadeContainer.modulate = normal_color
+
+func update_health_ui():
+    %HealthBar.value = Globals.health
