@@ -4,6 +4,8 @@ extends CanvasLayer
 @export var empty_color: Color = Color.RED
 
 func _ready():
+    Globals.laser_amount_change.connect(update_laser_text)
+    Globals.grenade_amount_change.connect(update_grenade_text)
     Globals.health_change.connect(update_health_ui)
     update_laser_text()
     update_grenade_text()

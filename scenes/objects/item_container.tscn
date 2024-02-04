@@ -4,7 +4,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vuh7r"]
 
-[node name="ItemContainer" type="StaticBody2D"]
+[node name="ItemContainer" type="StaticBody2D" groups=["Container"]]
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_eb04q")
@@ -12,4 +12,8 @@ script = ExtResource("1_eb04q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vuh7r")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BaseSprite" type="Sprite2D" parent="."]
+
+[node name="LidSprite" type="Sprite2D" parent="."]
+
+[node name="SpawnPositions" type="Node2D" parent="."]

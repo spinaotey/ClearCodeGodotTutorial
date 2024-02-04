@@ -32,9 +32,7 @@ shape = SubResource("CircleShape2D_4ctu0")
 texture = ExtResource("1_r7b5v")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_4r1os")
 texture = ExtResource("2_pvayi")
 lifetime = 1.5
-one_shot = true
