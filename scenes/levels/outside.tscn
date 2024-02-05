@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctrghhkmbtna3"]
+[gd_scene load_steps=11 format=3 uid="uid://ctrghhkmbtna3"]
 
 [ext_resource type="PackedScene" uid="uid://lbwyhax2j4hj" path="res://scenes/levels/level.tscn" id="1_jw467"]
 [ext_resource type="Texture2D" uid="uid://dhresff6mend5" path="res://graphics/ground/stones.png" id="2_81eva"]
@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://kx63m14jxads" path="res://scenes/objects/light_fan_animation.tscn" id="7_s6yaw"]
 [ext_resource type="PackedScene" uid="uid://mla6dlgntx5x" path="res://scenes/objects/gate.tscn" id="8_0bp31"]
 [ext_resource type="PackedScene" uid="uid://icfblvkx1sdf" path="res://scenes/items/item.tscn" id="10_tvmpb"]
-[ext_resource type="PackedScene" uid="uid://bn4byk8mxtnam" path="res://scenes/objects/box_item.tscn" id="11_cnbx4"]
-[ext_resource type="PackedScene" uid="uid://d0rjtxr3c1xak" path="res://scenes/objects/toilet.tscn" id="12_yakj4"]
 
 [node name="Outside" instance=ExtResource("1_jw467")]
 script = ExtResource("2_v8y6k")
@@ -50,18 +48,10 @@ position = Vector2(128, 605)
 [node name="LightFanAnimation" parent="Ground" index="5" instance=ExtResource("7_s6yaw")]
 position = Vector2(-704, 2372)
 
-[node name="Gate" parent="." index="1" instance=ExtResource("8_0bp31")]
+[node name="Gate" parent="." index="2" instance=ExtResource("8_0bp31")]
 metadata/_edit_lock_ = true
 
-[node name="BoxItem" parent="." index="2" instance=ExtResource("11_cnbx4")]
-position = Vector2(-304, 860)
-rotation = -1.5708
-
-[node name="Toilet" parent="." index="3" instance=ExtResource("12_yakj4")]
-position = Vector2(1259, 914)
-rotation = 0.785398
-
-[node name="Item" parent="." index="7" instance=ExtResource("10_tvmpb")]
+[node name="Item" parent="." index="5" instance=ExtResource("10_tvmpb")]
 position = Vector2(1454, 513)
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
