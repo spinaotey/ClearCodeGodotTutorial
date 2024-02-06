@@ -34,3 +34,10 @@ func hit():
 	health -= 3
 	if health <= 0:
 		queue_free()
+	else:
+		shader()
+
+func shader():
+	$Sprite2D.material.set_shader_parameter("progress", .2)
+	await get_tree().create_timer(.5).timeout
+	$Sprite2D.material.set_shader_parameter("progress", 0)
