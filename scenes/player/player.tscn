@@ -44,7 +44,7 @@ color_ramp = SubResource("GradientTexture1D_3ren8")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rh1p0"]
 polygon = PackedVector2Array(-33, 53, -21, 61, 3, 60, 23, 48, 42, 43, 63, 41, 61, 51, 94, 52, 98, 45, 107, 35, 121, 35, 126, 31, 126, 10, 122, 10, 119, 4, 87, -10, 75, -9, 58, -28, 48, -27, 43, -42, 28, -58, 20, -60, -21, -55, -36, -46, -49, -38, -59, -7, -51, 23)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Entity"]]
 collision_mask = 31
 script = ExtResource("1_mlmg8")
 

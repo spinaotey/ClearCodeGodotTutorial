@@ -4,6 +4,8 @@ signal laser_amount_change
 signal grenade_amount_change
 signal health_change
 
+var player_position: Vector2
+
 
 var laser_amount: int = 20:
     get:
