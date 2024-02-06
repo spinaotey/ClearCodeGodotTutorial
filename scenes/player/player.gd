@@ -60,3 +60,8 @@ func get_item(type: Enums.ITEM_TYPE) -> void:
 			Globals.grenade_amount += 1
 		Enums.ITEM_TYPE.HEALTH:
 			Globals.health += 10
+
+func hit():
+	Globals.health -= 3
+	if Globals.health <= 0:
+		get_tree().reload_current_scene()

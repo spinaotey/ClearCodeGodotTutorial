@@ -6,6 +6,7 @@ var player_nearby: bool = false
 var can_laser: bool = true
 @onready var laser_positions = $LaserSpawners.get_children()
 var current_laser_index: int = 0
+var health: int = 9
 
 func _process(_delta):
 	if player_nearby:
@@ -30,4 +31,6 @@ func _on_laser_cooldown_timeout():
 	can_laser = true
 
 func hit():
-	queue_free()
+	health -= 3
+	if health <= 0:
+		queue_free()
