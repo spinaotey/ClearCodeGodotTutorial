@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctrghhkmbtna3"]
+[gd_scene load_steps=13 format=3 uid="uid://ctrghhkmbtna3"]
 
 [ext_resource type="PackedScene" uid="uid://lbwyhax2j4hj" path="res://scenes/levels/level.tscn" id="1_jw467"]
 [ext_resource type="Texture2D" uid="uid://dhresff6mend5" path="res://graphics/ground/stones.png" id="2_81eva"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://mla6dlgntx5x" path="res://scenes/objects/gate.tscn" id="8_0bp31"]
 [ext_resource type="PackedScene" uid="uid://icfblvkx1sdf" path="res://scenes/items/item.tscn" id="10_tvmpb"]
 [ext_resource type="PackedScene" uid="uid://dipol1mh27joh" path="res://scenes/enemies/scout.tscn" id="11_x4mtp"]
+[ext_resource type="PackedScene" uid="uid://b0v8metugjx8b" path="res://scenes/enemies/bug.tscn" id="12_mmm8m"]
 
 [node name="Outside" instance=ExtResource("1_jw467")]
 script = ExtResource("2_v8y6k")
@@ -56,7 +57,13 @@ metadata/_edit_lock_ = true
 position = Vector2(1454, 513)
 
 [node name="Scout" parent="Enemies" index="0" instance=ExtResource("11_x4mtp")]
-position = Vector2(162, 994)
+position = Vector2(1717, 1693)
+
+[node name="Bug" parent="Enemies" index="1" instance=ExtResource("12_mmm8m")]
+position = Vector2(-255, 615)
+
+[node name="Player" parent="." index="7"]
+position = Vector2(90, 931)
 
 [connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
 [connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]
