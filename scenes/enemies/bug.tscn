@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://b0v8metugjx8b"]
+[gd_scene load_steps=43 format=3 uid="uid://b0v8metugjx8b"]
 
 [ext_resource type="Texture2D" uid="uid://dluek0ydp324k" path="res://graphics/enemies/bug/attack/00010.png" id="1_8j4yo"]
 [ext_resource type="Script" path="res://scenes/enemies/bug.gd" id="1_345qk"]
+[ext_resource type="Shader" path="res://scenes/enemies/scout.gdshader" id="2_lxlyp"]
 [ext_resource type="Texture2D" uid="uid://bmqo8ub2fwrl1" path="res://graphics/enemies/bug/attack/00011.png" id="2_pp3es"]
 [ext_resource type="Texture2D" uid="uid://cwtv8es6vu4p6" path="res://graphics/enemies/bug/attack/00012.png" id="3_pdcj0"]
 [ext_resource type="Texture2D" uid="uid://dshmvlibv348k" path="res://graphics/enemies/bug/attack/00013.png" id="4_upxlp"]
@@ -31,6 +32,12 @@
 [ext_resource type="Texture2D" uid="uid://jh8uc4yocif5" path="res://graphics/enemies/bug/walk/00006.png" id="28_y3rfq"]
 [ext_resource type="Texture2D" uid="uid://csi5nmstsnmbd" path="res://graphics/enemies/bug/walk/00007.png" id="29_e5ohc"]
 [ext_resource type="Texture2D" uid="uid://dd1ehh4i64yb1" path="res://graphics/enemies/bug/walk/00008.png" id="30_pnvv1"]
+[ext_resource type="Texture2D" uid="uid://d3i2uc43m1kgi" path="res://graphics/explosions/grunge.png" id="33_skgmv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4hyx"]
+shader = ExtResource("2_lxlyp")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/progress = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ieiu2"]
 animations = [{
@@ -98,7 +105,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("21_md573")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 24.0
 }, {
@@ -162,18 +169,45 @@ radius = 570.001
 [sub_resource type="CircleShape2D" id="CircleShape2D_x0kkt"]
 radius = 165.303
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pomuc"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_61cyi"]
+_data = [Vector2(0, 1), 0.0, -1.36778, 0, 1, Vector2(0.626667, 0.142857), 0.0, 0.0, 0, 0, Vector2(0.98, 0), -0.404312, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xm7gx"]
+curve = SubResource("Curve_61cyi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pau6j"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.5
+direction = Vector3(1, 1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_xm7gx")
+anim_offset_max = 1.0
+
 [node name="Bug" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 11
 script = ExtResource("1_345qk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_i4hyx")
 position = Vector2(-60, 0)
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_ieiu2")
 animation = &"attack"
-frame_progress = 0.224314
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-72, 0)
@@ -181,15 +215,30 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aj4bb")
 
 [node name="NoticeArea" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
 shape = SubResource("CircleShape2D_aov47")
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("CircleShape2D_x0kkt")
 
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="HitParticles" type="GPUParticles2D" parent="Particles"]
+modulate = Color(0.282353, 0.254902, 0.129412, 1)
+material = SubResource("CanvasItemMaterial_pomuc")
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_pau6j")
+texture = ExtResource("33_skgmv")
+lifetime = 0.4
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
 [connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
